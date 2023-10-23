@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script>
+      function getWidthAndHeight() {
+        const width = Math.max(document.documentElement.clientWidth || 0,
+                               document.documentElement.offsetWidth || 0,
+                               window.innerWidth || 0)
+        const height = Math.max(document.documentElement.clientHeight || 0,
+                                document.documentElement.offsetHeight || 0,
+                                window.innerHeight || 0);
+
+        return [width, height]
+      }
+      window.onload = function() {
+        const canvas = document.getElementById("cnvs");
+        const [ww, wh] = getWidthAndHeight();
+
+        canvas.width = ww
+        canvas.height = wh
+        canvas.style.width = `${ww}px`;
+        canvas.style.height = `${wh}px`;
+        const ctx = canvas.getContext('2d', { alpha: false });
+        const img = new Image();
+        img.onload = function() {
+          const [w, h] = [img.naturalWidth, img.naturalHeight];
+          const sx = w - ww;
+          const sy = h - wh;
+          ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+          ctx.drawImage(img,
+                        sx,
+                        sy,
+                        ww,
+                        wh,
+                        0, 0, ww, wh);
+        }
+        img.onerror = function() { console.error(`UNABLE TO LOAD IMAGE`) }
+        img.src='bigimg.jpg'
+      }
+    </script>
+  </head>
+  <body style="border:0px;margin:0;padding:0;">
+    <canvas id="cnvs" style="border:0px;margin:0;padding:0;">Sorry, your browser does not support canvas.</canvas>
+  </body>
+</html>
