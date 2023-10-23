@@ -1,16 +1,15 @@
 # About
 
 Trying the most basic example of this rendering oddity I'm seeing. On a normal
-desktop this html/script will paint the bottom right of the image (downloaded
-in step one).
+desktop this html/script will paint the bottom right of the image.
 
 The HTML/code crops the bottom-right part of the image and paints it (taking
 the bottom-most/right-most pixels of the window) on a canvas. So if your
-document height is 100\*100, it crops the bottom-right 100\*100 pixels and
-paints them using
+document height is 100\*100, it crops the bottom-right 100\*100 pixels of the
+image and paints them using
 [drawImage](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage).
 
-The image, from a free D&D campaign, is 4950*6750 and just over 4mb in size. I
+The image I'm using is from a free D&D campaign. It's 4950*6750 and just over 4mb in size. I
 think the important thing is the size...
 
 On a memory constrained platform, like chrome in an android emulator or silk on
